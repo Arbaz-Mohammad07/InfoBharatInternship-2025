@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zentrixia Learning Hub</title>
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <h1>Zentrixia Learning Hub</h1>
+    <p class="tagline">Learn Fast. Learn Smart.</p>
+    <button class="cta-btn" onclick="scrollToSection('courses')">Explore Courses</button>
+    <button id="darkModeToggle">🌙 Dark Mode</button>
+  </header>
+
+  <!-- Courses Section -->
+  <section id="courses" class="section">
+    <h2>Our Courses</h2>
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="Search courses..." />
+      <select id="levelFilter">
+        <option value="all">All Levels</option>
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+    </div>
+    <div class="course-grid">
+      <div class="course-card" data-level="beginner">AI Fundamentals — 7 days — Beginner — $49</div>
+      <div class="course-card" data-level="intermediate">Web Dev Bootcamp — 10 days — Intermediate — $79</div>
+      <div class="course-card" data-level="advanced">Cloud Computing — 15 days — Advanced — $99</div>
+      <div class="course-card" data-level="beginner">UI/UX Basics — 5 days — Beginner — $39</div>
+      <div class="course-card" data-level="intermediate">JavaScript Deep Dive — 12 days — Intermediate — $89</div>
+      <div class="course-card" data-level="advanced">Machine Learning — 15 days — Advanced — $129</div>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section id="programs" class="section">
+    <h2>Signature Programs</h2>
+    <div class="programs">
+      <div class="program-card">🚀 Full-Stack Mastery (with Certification)</div>
+      <div class="program-card">🎨 Design Thinking & UI/UX (with Badge)</div>
+      <div class="program-card">☁️ Cloud Native Essentials (with Badge)</div>
+    </div>
+  </section>
+
+  <!-- Instructors Section -->
+  <section id="instructors" class="section">
+    <h2>Meet Our Instructors</h2>
+    <div class="instructors">
+      <div class="instructor-card">👩‍🏫 Alex Johnson — AI & ML Expert</div>
+      <div class="instructor-card">👨‍💻 Sam Lee — Full-Stack Developer</div>
+      <div class="instructor-card">🎨 Maya Patel — UI/UX Designer</div>
+    </div>
+  </section>
+
+  <!-- Join Now Section -->
+  <section id="join" class="section">
+    <h2>Join Now</h2>
+    <form class="join-form">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <input type="text" placeholder="Course of Interest" required />
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>📧 hello@zentrixia.tech</p>
+    <p>🕒 10:00 AM – 9:00 PM (Mon–Fri)</p>
+    <p>© 2025 Zentrixia Learning Hub</p>
+  </footer>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    // Smooth Scroll
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Dark Mode Toggle
+    const toggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    if (localStorage.getItem('dark-mode') === 'true') body.classList.add('dark');
+
+    toggle.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      localStorage.setItem('dark-mode', body.classList.contains('dark'));
+    });
+
+    // Search + Filter
+    const searchInput = document.getElementById('searchInput');
+    const levelFilter = document.getElementById('levelFilter');
+    const cards = document.querySelectorAll('.course-card');
+
+    function filterCourses() {
+      const query = searchInput.value.toLowerCase();
+      const level = levelFilter.value;
+      cards.forEach(card => {
+        const matchesQuery = card.textContent.toLowerCase().includes(query);
+        const matchesLevel = level === 'all' || card.dataset.level === level;
+        card.style.display = matchesQuery && matchesLevel ? 'block' : 'none';
+      });
+    }
+
+    searchInput.addEventListener('input', filterCourses);
+    levelFilter.addEventListener('change', filterCourses);
+  </script>
+</body>
+</html>
