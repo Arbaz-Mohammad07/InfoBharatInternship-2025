@@ -60,7 +60,14 @@ It demonstrates practical implementation of **HTML, CSS, and JavaScript**, and s
 - **Programs Section**: Highlights 2–3 signature learning programs with mock badges or certification icons.  
 - **Instructors Section**: Profile cards of 2–3 fictional instructors with expertise.  
 - **Join Now Form**: Front-end form to collect user information.  
-- **Footer**: Social icons, contact email, quick links, optional newsletter field.  
+- **Footer**: Social icons, contact email, quick links, optional newsletter field.
+
+ ## Screenshots
+![Homepage](images/homepage.png)
+![Courses Page](images/courses.png)
+![Programs Page](images/programs.png)
+![Instructors Page](images/instructors.png)
+![Join Now Form](images/joinnow.png)
 
 
 ## How to Run
